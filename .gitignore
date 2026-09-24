@@ -1,0 +1,15 @@
+# DHS microdata must never be committed (DHS terms of use)
+data/raw/
+data/processed/
+*.SAV
+*.sav
+*.RData
+*.rda
+*.rds
+
+# R session files
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+.DS_Store

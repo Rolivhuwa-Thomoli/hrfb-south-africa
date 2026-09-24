@@ -1,0 +1,7 @@
+"outcome","label","n_women","pct_unweighted","pct_weighted"
+"hrfb_less_18","First birth before 18",1412,16.6176297516771,16.3751452622021
+"hrfb_greater_34","Birth after age 34",858,10.0976815346593,9.57857593324705
+"hrfb_sbi","Birth interval < 24 months",893,10.509591620572,10.5873804701464
+"hrfb_parity","More than 3 children",979,11.5217135459574,10.7270944225301
+"hrfb_any","Any HRFB",2728,32.1054489819936,32.016896507002
+"hrfb_multiple","Two or more HRFBs",986,11.6040955631399,10.9711616468035
