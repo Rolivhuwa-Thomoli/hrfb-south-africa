@@ -1,57 +1,93 @@
-"outcome","predictor","cramers_v","p_value","min_expected"
-"hrfb_less_18","age_group",0.088550679185093,5.15057977680799e-13,170.995410144757
-"hrfb_greater_34","age_group",0.50651584862165,0,103.905142991644
-"hrfb_sbi","age_group",0.224171898777227,4.4835145538e-90,108.143697775686
-"hrfb_parity","age_group",0.391129484225548,6.74639612134381e-279,118.558432387902
-"hrfb_less_18","province",0.0953008832291427,1.80984566377219e-13,108.513122278451
-"hrfb_greater_34","province",0.0468920258631735,0.0166456935047413,65.9378604213252
-"hrfb_sbi","province",0.0685695185970921,3.27173546994221e-06,68.6276332823349
-"hrfb_parity","province",0.0762279071524557,5.39119110852409e-08,75.2367894551018
-"hrfb_less_18","residence",0.0572685753945981,1.2991211362597e-07,615.184653407085
-"hrfb_greater_34","residence",0.0222019546171125,0.0407015195623303,373.816170413087
-"hrfb_sbi","residence",0.0649604452991539,2.12436870090441e-09,389.065081793574
-"hrfb_parity","residence",0.0828616651289712,2.20416738591666e-14,426.533835471343
-"hrfb_less_18","ethnicity",0.0737796455692826,5.01103383447553e-10,15.4543956690597
-"hrfb_greater_34","ethnicity",0.0126811947743984,0.71342329760194,9.39084382723314
-"hrfb_sbi","ethnicity",0.0394655150362977,0.00415635420350294,9.77392020713193
-"hrfb_parity","ethnicity",0.0561886699832986,6.40178317981749e-06,10.7151935977404
-"hrfb_less_18","hh_head_sex",0.00899786103326188,0.406869394758796,599.065552547958
-"hrfb_greater_34","hh_head_sex",0.00788636064355585,0.46725155949516,364.021419324467
-"hrfb_sbi","hh_head_sex",0.0233943452329891,0.0310468742954961,378.870777921619
-"hrfb_parity","hh_head_sex",0.0139035286824907,0.199977461643691,415.357773331764
-"hrfb_less_18","education",0.143275384820414,1.41026606979871e-37,30.9087913381193
-"hrfb_greater_34","education",0.151101462395637,8.34410358210183e-42,18.7816876544663
-"hrfb_sbi","education",0.1386897983288,3.31900666404883e-35,19.5478404142639
-"hrfb_parity","education",0.264746881192758,9.2338663549173e-129,21.4303871954808
-"hrfb_less_18","literacy",0.0885693576424825,3.35779987526419e-15,53.0102389078498
-"hrfb_greater_34","literacy",0.101660359854574,8.53505541193567e-20,32.2116040955631
-"hrfb_sbi","literacy",0.11038020170125,3.30894656331791e-23,33.5255972696246
-"hrfb_parity","literacy",0.186225559692012,1.02802531187869e-64,36.7542662116041
-"hrfb_less_18","wealth_index",0.110768560888434,2.29732822059e-23,324.542309050253
-"hrfb_greater_34","wealth_index",0.0258050501589725,0.0590672438775009,197.207720371896
-"hrfb_sbi","wealth_index",0.0734674011528961,1.09937983208985e-10,205.252324349771
-"hrfb_parity","wealth_index",0.119787771635008,3.34545492137994e-27,225.019065552548
-"hrfb_less_18","marital_status",0.0909922955678827,3.5887008960545e-15,88.9043191714723
-"hrfb_greater_34","marital_status",0.219619736427634,1.64022276520732e-88,54.0225962104272
-"hrfb_sbi","marital_status",0.179929553907969,2.4478558284836e-59,56.22631517006
-"hrfb_parity","marital_status",0.259567263733778,9.28231745854125e-124,61.6411674708721
-"hrfb_less_18","currently_working",0.0121888898350617,0.261198973977325,453.993644815817
-"hrfb_greater_34","currently_working",0.088757970959489,2.80014915215984e-16,275.868659526892
-"hrfb_sbi","currently_working",0.0368732916770494,0.000676451939486508,287.122043074026
-"hrfb_parity","currently_working",0.0317466893742408,0.00342927825574402,314.773214075556
-"hrfb_less_18","ever_used_fp",0.100832661368394,1.47661642220685e-20,484.403907261386
-"hrfb_greater_34","ever_used_fp",0.0677547119777122,4.22248343705916e-10,294.347416735318
-"hrfb_sbi","ever_used_fp",0.0835476871280913,1.34629059599224e-14,306.354595739673
-"hrfb_parity","ever_used_fp",0.0635579351528798,4.66454219455298e-09,335.857949864658
-"hrfb_less_18","unmet_need",0.146181454156135,3.42610912601519e-38,83.5866776509356
-"hrfb_greater_34","unmet_need",0.204947612132947,5.66555095557431e-76,50.7913381193362
-"hrfb_sbi","unmet_need",0.180692114166568,8.00532993018928e-59,52.863245851477
-"hrfb_parity","unmet_need",0.244048401403049,3.2466478246992e-108,57.9542191361657
-"hrfb_less_18","consumes_media",0.0440693282913323,4.85969355248594e-05,130.614569848182
-"hrfb_greater_34","consumes_media",0.0345559924018692,0.00144582623936467,79.367776862422
-"hrfb_sbi","consumes_media",0.0601251950268907,2.9854001321497e-08,82.6053901376957
-"hrfb_parity","consumes_media",0.0883409404782038,3.84981915147069e-16,90.5606684712251
-"hrfb_less_18","heard_fp_from_media",0.0136919278843593,0.206908993713339,650.41402848064
-"hrfb_greater_34","heard_fp_from_media",0.00609419327780842,0.574281116761676,395.223255266565
-"hrfb_sbi","heard_fp_from_media",0.0212912237927942,0.0496918091785023,411.345416029187
-"hrfb_parity","heard_fp_from_media",0.0517946290597169,1.80256274134709e-06,450.959868188773
+"outcome_key","variable","variable_label","chi_sq","df","p_value","cramers_v","significant"
+"birth_before18","age_group","Age group",38.47,4,8.98e-08,0.067,"Yes"
+"birth_before18","province","Province",77.2,8,1.78e-13,0.095,"Yes"
+"birth_before18","residence","Urban or rural residence",27.08,1,1.95e-07,0.057,"Yes"
+"birth_before18","ethnicity","Ethnicity",45.14,2,1.58e-10,0.073,"Yes"
+"birth_before18","hh_head_sex","Sex of household head",0.73,1,0.392,0.01,"No"
+"birth_before18","education","Highest education level",180.72,3,6.18e-39,0.146,"Yes"
+"birth_before18","literacy","Literacy",71.2,2,3.46e-16,0.091,"Yes"
+"birth_before18","wealth_index","Wealth index (3 groups)",105.63,2,1.16e-23,0.111,"Yes"
+"birth_before18","currently_working","Currently working",1.48,1,0.223,0.014,"No"
+"birth_before18","occupation","Occupation",61.37,8,2.51e-10,0.085,"Yes"
+"birth_before18","marital_status","Marital status",73.26,3,8.54e-16,0.093,"Yes"
+"birth_before18","ever_used_fp","Ever used family planning",82.92,1,8.54e-20,0.099,"Yes"
+"birth_before18","unmet_need","Unmet need for contraception",180.6,4,5.54e-38,0.146,"Yes"
+"birth_before18","reads_newspaper","Reads newspaper",53.16,2,2.86e-12,0.079,"Yes"
+"birth_before18","listens_radio","Listens to radio",27.04,2,1.34e-06,0.056,"Yes"
+"birth_before18","watches_tv","Watches TV",25.97,2,2.3e-06,0.055,"Yes"
+"birth_before18","owns_mobile","Owns mobile phone",0.01,1,0.925,0.002,"No"
+"birth_before18","uses_internet","Uses internet",109.12,2,2.02e-24,0.113,"Yes"
+"birth_before18","heard_fp_radio","Heard FP on radio",0.83,1,0.362,0.01,"No"
+"birth_before18","heard_fp_tv","Heard FP on TV",2.88,1,0.0899,0.019,"No"
+"birth_before18","heard_fp_paper","Heard FP in newspaper",13.61,1,0.000225,0.04,"Yes"
+"birth_before18","consumes_media","Media exposure",15.57,1,7.96e-05,0.043,"Yes"
+"birth_before18","heard_fp_from_media","Heard about family planning in media",1.41,1,0.235,0.013,"No"
+"birth_after34","age_group","Age group",145.22,1,1.92e-33,0.224,"Yes"
+"birth_after34","province","Province",13.03,8,0.111,0.067,"No"
+"birth_after34","residence","Urban or rural residence",16.84,1,4.06e-05,0.077,"Yes"
+"birth_after34","ethnicity","Ethnicity",20.3,2,3.91e-05,0.084,"Yes"
+"birth_after34","hh_head_sex","Sex of household head",0.66,1,0.418,0.016,"No"
+"birth_after34","education","Highest education level",21.55,3,8.1e-05,0.086,"Yes"
+"birth_after34","literacy","Literacy",12.51,2,0.00193,0.066,"Yes"
+"birth_after34","wealth_index","Wealth index (3 groups)",35.1,2,2.38e-08,0.11,"Yes"
+"birth_after34","currently_working","Currently working",9.88,1,0.00167,0.059,"Yes"
+"birth_after34","occupation","Occupation",24.34,8,0.00201,0.091,"Yes"
+"birth_after34","marital_status","Marital status",11.08,3,0.0113,0.062,"Yes"
+"birth_after34","ever_used_fp","Ever used family planning",23.32,1,1.37e-06,0.09,"Yes"
+"birth_after34","unmet_need","Unmet need for contraception",76.55,4,9.37e-16,0.162,"Yes"
+"birth_after34","reads_newspaper","Reads newspaper",20.23,2,4.05e-05,0.083,"Yes"
+"birth_after34","listens_radio","Listens to radio",19.48,2,5.9e-05,0.082,"Yes"
+"birth_after34","watches_tv","Watches TV",8.31,2,0.0157,0.053,"Yes"
+"birth_after34","owns_mobile","Owns mobile phone",12.56,1,0.000393,0.067,"Yes"
+"birth_after34","uses_internet","Uses internet",38.96,2,3.47e-09,0.116,"Yes"
+"birth_after34","heard_fp_radio","Heard FP on radio",0.57,1,0.452,0.015,"No"
+"birth_after34","heard_fp_tv","Heard FP on TV",1.87,1,0.172,0.026,"No"
+"birth_after34","heard_fp_paper","Heard FP in newspaper",6.06,1,0.0138,0.046,"Yes"
+"birth_after34","consumes_media","Media exposure",8.08,1,0.00448,0.054,"Yes"
+"birth_after34","heard_fp_from_media","Heard about family planning in media",3,1,0.083,0.033,"No"
+"short_interval","age_group","Age group",415.08,4,1.54e-88,0.221,"Yes"
+"short_interval","province","Province",41.2,8,1.91e-06,0.07,"Yes"
+"short_interval","residence","Urban or rural residence",36.35,1,1.65e-09,0.066,"Yes"
+"short_interval","ethnicity","Ethnicity",11.85,2,0.00267,0.037,"Yes"
+"short_interval","hh_head_sex","Sex of household head",4.27,1,0.0387,0.023,"Yes"
+"short_interval","education","Highest education level",158.95,3,3.09e-34,0.137,"Yes"
+"short_interval","literacy","Literacy",101.06,2,1.13e-22,0.109,"Yes"
+"short_interval","wealth_index","Wealth index (3 groups)",46.04,2,1.01e-10,0.074,"Yes"
+"short_interval","currently_working","Currently working",11.83,1,0.000584,0.038,"Yes"
+"short_interval","occupation","Occupation",40.12,8,3.04e-06,0.069,"Yes"
+"short_interval","marital_status","Marital status",276,3,1.55e-59,0.18,"Yes"
+"short_interval","ever_used_fp","Ever used family planning",59.63,1,1.14e-14,0.084,"Yes"
+"short_interval","unmet_need","Unmet need for contraception",277.33,4,8.37e-59,0.18,"Yes"
+"short_interval","reads_newspaper","Reads newspaper",35.21,2,2.26e-08,0.064,"Yes"
+"short_interval","listens_radio","Listens to radio",12.66,2,0.00178,0.039,"Yes"
+"short_interval","watches_tv","Watches TV",21.55,2,2.1e-05,0.05,"Yes"
+"short_interval","owns_mobile","Owns mobile phone",3.78,1,0.0519,0.022,"No"
+"short_interval","uses_internet","Uses internet",116.16,2,5.99e-26,0.117,"Yes"
+"short_interval","heard_fp_radio","Heard FP on radio",0.02,1,0.899,0.002,"No"
+"short_interval","heard_fp_tv","Heard FP on TV",5.42,1,0.0199,0.026,"Yes"
+"short_interval","heard_fp_paper","Heard FP in newspaper",9.24,1,0.00237,0.033,"Yes"
+"short_interval","consumes_media","Media exposure",29.83,1,4.71e-08,0.06,"Yes"
+"short_interval","heard_fp_from_media","Heard about family planning in media",3.75,1,0.0528,0.021,"No"
+"high_parity","age_group","Age group",1301.81,4,1.35e-280,0.391,"Yes"
+"high_parity","province","Province",49.63,8,4.81e-08,0.076,"Yes"
+"high_parity","residence","Urban or rural residence",60.05,1,9.26e-15,0.084,"Yes"
+"high_parity","ethnicity","Ethnicity",27.07,2,1.32e-06,0.056,"Yes"
+"high_parity","hh_head_sex","Sex of household head",1.65,1,0.199,0.014,"No"
+"high_parity","education","Highest education level",584.97,3,1.82e-126,0.262,"Yes"
+"high_parity","literacy","Literacy",291.23,2,5.76e-64,0.185,"Yes"
+"high_parity","wealth_index","Wealth index (3 groups)",123.95,2,1.21e-27,0.121,"Yes"
+"high_parity","currently_working","Currently working",8.63,1,0.00331,0.032,"Yes"
+"high_parity","occupation","Occupation",110.27,8,3.35e-20,0.114,"Yes"
+"high_parity","marital_status","Marital status",572.29,3,1.02e-123,0.259,"Yes"
+"high_parity","ever_used_fp","Ever used family planning",33.96,1,5.62e-09,0.064,"Yes"
+"high_parity","unmet_need","Unmet need for contraception",506.42,4,2.74e-108,0.244,"Yes"
+"high_parity","reads_newspaper","Reads newspaper",162.75,2,4.56e-36,0.138,"Yes"
+"high_parity","listens_radio","Listens to radio",36.27,2,1.33e-08,0.065,"Yes"
+"high_parity","watches_tv","Watches TV",52.96,2,3.16e-12,0.079,"Yes"
+"high_parity","owns_mobile","Owns mobile phone",4.62,1,0.0315,0.024,"Yes"
+"high_parity","uses_internet","Uses internet",437.09,2,1.22e-95,0.227,"Yes"
+"high_parity","heard_fp_radio","Heard FP on radio",0.65,1,0.419,0.009,"No"
+"high_parity","heard_fp_tv","Heard FP on TV",21.73,1,3.14e-06,0.051,"Yes"
+"high_parity","heard_fp_paper","Heard FP in newspaper",54.36,1,1.67e-13,0.08,"Yes"
+"high_parity","consumes_media","Media exposure",66.01,1,4.49e-16,0.089,"Yes"
+"high_parity","heard_fp_from_media","Heard about family planning in media",22.56,1,2.04e-06,0.052,"Yes"
