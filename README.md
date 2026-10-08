@@ -14,9 +14,9 @@ High-risk fertility behaviours are four types of births that put mother and chil
 
 I have also built an interactive **Power BI** report on the results. It has a province map, breakdowns by wealth, education and age, and a forest plot of adjusted odds ratios drawn with an R visual. It uses Power Query, a star-schema data model and survey-weighted DAX measures. See [powerbi/](powerbi/README.md).
 
-[![Power BI dashboard](powerbi/screenshots/01_overview.png)](powerbi/README.md)
+[![Power BI dashboard](powerbi/screenshots/01d_overview.png)](powerbi/README.md)
 
-##In General:## The northern provinces, especially Limpopo and Mpumalanga showed more cases of women who engaged in high-risk fertility behaviors than their counter-parts for all types.
+**In General:** The northern and eastern provinces, especially Limpopo and Mpumalanga showed more cases of women who engaged in high-risk fertility behaviors than their counter-parts for all types.
 ---
 
 ## Key findings
