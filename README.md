@@ -2,9 +2,9 @@
 
 **Which social, economic and demographic factors are linked to high-risk fertility behaviour (HRFB) in South Africa?**
 
-High-risk fertility behaviours are four types of birth cases that put mother and child at higher risk of illness and death. The four types are giving birth a young age (less than 18), giving birth after age 34, it may not seem too old for some, but prior research suggested otherwise. Thirdly is spacing births too closely (within 24 months), and lastly having more than 3 children. Using nationally representative survey data for 8,514 women, I was investigating who is most at risk, taking into account that women living in the same community tend to behave similar, but this had to be confirmed using cluster-variance and ICC.
+High-risk fertility behaviours are four types of births that put mother and child at higher risk of illness and death. The first is giving birth at a young age (before 18). The second is giving birth after age 34; that may not seem old to some, but prior research shows the risks rise from this age. The third is spacing births too closely (less than 24 months apart), and the last is having more than 3 children. Using nationally representative survey data for 8,514 women, I investigated who is most at risk, taking into account that women living in the same community tend to behave similarly. Whether they really do had to be confirmed with the cluster variance and the intra-cluster correlation (ICC).
 
-**Why it matters:** the aim is to develop a profile of women who are most likely to have high-risk births, so that health strategists and policy-makers can target their campaigns for family-planning and maternal-health programmes to those at high-risk. Fewer high-risk births should mean fewer adverse maternal and child outcomes.
+**Why it matters:** the aim is to develop a profile of the women most likely to have high-risk births, so that health strategists and policy-makers can direct their family-planning and maternal-health campaigns at the women at highest risk. Fewer high-risk births should mean fewer adverse maternal and child outcomes.
 
 ![Prevalence](figures/02_prevalence.png)
 
@@ -53,9 +53,9 @@ I used the standard DHS/WHO definitions and built each one from the women's birt
 | Any HRFB | At least one of the four | derived | 32.2% |
 | Multiple HRFB | Two or more | derived | 11.0% |
 
-**Decision: women with no births are coded 0 rather than treated as missing.** The 2,390 women with no children can't show any of these behaviours, and dropping them would make the results apply only to mothers. The idea is to capture whatever might have deterred them from giving birth. The trade-off: young women who haven't had children *yet* are counted as "not at risk", which is part of why age dominates the models.
+**Decision: women with no births are coded 0 rather than treated as missing.** The 2,390 women with no children can't show any of these behaviours, and dropping them would make the results apply only to mothers. Keeping them lets the models compare women with high-risk births against all other women, including those whose circumstances have so far kept them from giving birth. The trade-off: young women who haven't had children *yet* are counted as "not at risk", which is part of why age dominates the models.
 
-**Decision: late birth is modelled only among women aged 35 and over** (n = 2,909). A woman who is 25 cannot have had a birth after 34, so nothing who have driven her to give birth after 34, since it hasnt happened yet.
+**Decision: late birth is modelled only among women aged 35 and over** (n = 2,909). A woman who is 25 cannot have had a birth after 34 yet, so nothing about her circumstances can explain that outcome. Including her would only make age a trivial predictor.
 
 ---
 
@@ -79,7 +79,7 @@ I wrote rules that every record should satisfy and checked the data against them
 |---|---|---|
 | Age at first birth is missing only for women with no births | 0 | — |
 | Age at most recent birth is missing only for women with no births | 0 | — |
-| Birth interval is missing only for women with fewer than 2 births | 18 | **This turned out to be twins.**  so there's no interval. Coding them 0 is correct. |
+| Birth interval is missing only for women with fewer than 2 births | 18 | **All 18 turned out to be twins.** Their only births are a twin pair, so there's no interval. Coding them 0 is correct. |
 | Age at first birth is at or below current age | 0 | — |
 
 ### Outliers
@@ -121,7 +121,7 @@ What stands out:
 
 ## 4. Variable selection: group LASSO for mixed models
 
-**Why not just screen with p-values?** Choosing predictors one at a time from bivariate tests ignores correlations between them. Education, literacy, and wealth, for example, overlap heavily. The LASSO adds a penalty that shrinks weak coefficients to exactly zero, so the selection takes all predictors into account together. In other words, how do her odds of engaging in HRFB change if she has tertiary education compared to not having any education, provided that all other factors like age, wealth, province, etc. remain the same?
+**Why not just screen with p-values?** Choosing predictors one at a time from bivariate tests ignores correlations between them. Education, literacy, and wealth, for example, overlap heavily. The LASSO adds a penalty that shrinks weak coefficients to exactly zero, so the selection takes all predictors into account together.
 
 **Why `glmmLasso`?** Women are sampled in clusters, so women in the same community are not independent. `glmmLasso` fits the penalty inside a model with a random intercept for each cluster.
 
@@ -148,7 +148,7 @@ For three outcomes, the LASSO kept everything: judged together, none of the pred
 
 ## 5. Final two-level logistic models
 
-**These are explanatory models, not predictive ones.** The goal is to understand *which* characteristics are associated with high-risk fertility behaviour, and how strongly, after accounting for everything else. So the quantities that matter are the odds ratios, their confidence intervals and their p-values. They say whether an association is distinguishable from chance and how large it is. Discrimination measures such as AUC appear in section 6 only as a check that the models describe the data adequately, not as the objective. A model built purely to predict would be judged differently, and could use variables with no clear interpretation.
+**These are explanatory models, not predictive ones.** The goal is to understand *which* characteristics are associated with high-risk fertility behaviour, and how strongly, after accounting for everything else. In other words: how do a woman's odds of HRFB change if she has higher (tertiary) education rather than none, when her age, wealth, province and the other factors stay the same? So the quantities that matter are the odds ratios, their confidence intervals and their p-values. They say whether an association is distinguishable from chance and how large it is. Discrimination measures such as AUC appear in section 6 only as a check that the models describe the data adequately, not as the objective. A model built purely to predict would be judged differently, and could use variables with no clear interpretation.
 
 `glmmLasso` selects variables but doesn't give valid standard errors, so I refitted the selected predictors as an ordinary (unpenalised) two-level logistic regression with `lme4::glmer`:
 
@@ -160,8 +160,7 @@ where woman *i* lives in cluster *j*.
 
 Red points raise the odds, green points lower them and grey points are not significant at 5%. Full table: [`results/final_odds_ratios.csv`](results/final_odds_ratios.csv).
 
-### IMPORTANT NOTE: Correlation is not causation! 
-: The case of unmet need
+### Important: correlation is not causation (the case of unmet need)
 
 Unmet need for limiting births has the largest odds ratios in every model, and it is tempting to read that as "meeting women's need for contraception would prevent these births". The data cannot support that claim:
 
