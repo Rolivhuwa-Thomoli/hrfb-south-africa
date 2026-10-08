@@ -37,6 +37,8 @@ first birth before 18, birth after age 34, short birth interval (under 24 months
 * Single-direction many-to-one relationships, sort-by-column on every categorical field so slicers
   and axes follow the natural order (Poor, Middle, Rich) rather than alphabetical order.
 
+![Data model](screenshots/06_data_model.png)
+
 **DAX** (23 measures in display folders, all in [`measures.dax`](measures.dax))
 * **Survey-weighted prevalence** that re-aggregates correctly under any filter:
   `DIVIDE(SUM(w_events), SUM(w_women))` over pre-aggregated weighted counts.
