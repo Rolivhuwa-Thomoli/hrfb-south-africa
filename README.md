@@ -16,6 +16,7 @@ I have also built an interactive **Power BI** report on the results. It has a pr
 
 [![Power BI dashboard](powerbi/screenshots/01_overview.png)](powerbi/README.md)
 
+##In General:## The northern provinces, especially Limpopo and Mpumalanga showed more cases of women who engaged in high-risk fertility behaviors than their counter-parts for all types.
 ---
 
 ## Key findings
