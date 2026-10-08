@@ -1,0 +1,99 @@
+// All report measures in one block, for Power BI's DAX query view.
+// Paste the whole file into a new DAX query tab, then click
+// "Update model with changes" in the code lens above DEFINE.
+
+DEFINE
+    // ---------- Prevalence ----------
+    MEASURE '_Measures'[Weighted Women] =
+        IF ( HASONEVALUE ( dim_category[dimension] ),
+             SUM ( fact_prevalence[w_women] ),
+             CALCULATE ( SUM ( fact_prevalence[w_women] ), dim_category[dimension] = "overall" ) )
+
+    MEASURE '_Measures'[Weighted Events] =
+        IF ( HASONEVALUE ( dim_category[dimension] ),
+             SUM ( fact_prevalence[w_events] ),
+             CALCULATE ( SUM ( fact_prevalence[w_events] ), dim_category[dimension] = "overall" ) )
+
+    MEASURE '_Measures'[Women (unweighted)] =
+        IF ( HASONEVALUE ( dim_category[dimension] ),
+             SUM ( fact_prevalence[n_women] ),
+             CALCULATE ( SUM ( fact_prevalence[n_women] ), dim_category[dimension] = "overall" ) )
+
+    MEASURE '_Measures'[Prevalence %] =
+        IF ( HASONEVALUE ( dim_outcome[outcome_key] ),
+             DIVIDE ( [Weighted Events], [Weighted Women] ) )
+
+    MEASURE '_Measures'[Prevalence (DHS rule)] =
+        VAR _n = [Women (unweighted)]
+        RETURN IF ( _n >= 25, [Prevalence %] )
+
+    MEASURE '_Measures'[National Prevalence %] =
+        CALCULATE ( [Prevalence %], REMOVEFILTERS ( dim_province ) )
+
+    MEASURE '_Measures'[Gap vs National (pp)] =
+        ( [Prevalence %] - [National Prevalence %] ) * 100
+
+    MEASURE '_Measures'[Province Rank] =
+        IF ( HASONEVALUE ( dim_province[province_name] ),
+             RANKX ( ALL ( dim_province[province_name] ), [Prevalence %], , DESC, DENSE ) )
+
+    MEASURE '_Measures'[Highest Province] =
+        VAR _top = TOPN ( 1, ALL ( dim_province[province_name] ), [Prevalence %], DESC )
+        RETURN MAXX ( _top, dim_province[province_name] )
+
+    // ---------- Models ----------
+    MEASURE '_Measures'[Odds Ratio] = AVERAGE ( fact_odds_ratios[odds_ratio] )
+    MEASURE '_Measures'[OR Lower] = AVERAGE ( fact_odds_ratios[ci_lower] )
+    MEASURE '_Measures'[OR Upper] = AVERAGE ( fact_odds_ratios[ci_upper] )
+
+    MEASURE '_Measures'[Significant Factors] =
+        CALCULATE ( COUNTROWS ( fact_odds_ratios ), fact_odds_ratios[p_value] < 0.05 )
+
+    MEASURE '_Measures'[Strongest Risk Factor] =
+        VAR _t = TOPN ( 1,
+                        FILTER ( fact_odds_ratios, fact_odds_ratios[p_value] < 0.05 ),
+                        fact_odds_ratios[odds_ratio], DESC )
+        RETURN MAXX ( _t, fact_odds_ratios[term_label] & " (OR " & FORMAT ( fact_odds_ratios[odds_ratio], "0.0" ) & ")" )
+
+    MEASURE '_Measures'[OR Colour] =
+        SWITCH ( TRUE (),
+                 MAX ( fact_odds_ratios[p_value] ) >= 0.05, "#9AA5AE",
+                 [Odds Ratio] > 1, "#C44536",
+                 "#3D9970" )
+
+    MEASURE '_Measures'[AUC] = AVERAGE ( fact_model_performance[auc] )
+    MEASURE '_Measures'[ICC (null model)] = AVERAGE ( fact_model_performance[icc_null] )
+    MEASURE '_Measures'[MOR (null model)] = AVERAGE ( fact_model_performance[mor_null] )
+
+    // ---------- Labels ----------
+    MEASURE '_Measures'[Selected Outcome] =
+        SELECTEDVALUE ( dim_outcome[outcome_label], "Select one outcome" )
+
+    MEASURE '_Measures'[Map Title] =
+        "Weighted prevalence of " & LOWER ( [Selected Outcome] ) & " by province"
+
+    MEASURE '_Measures'[Breakdown Title] =
+        [Selected Outcome] & " by " & LOWER ( SELECTEDVALUE ( dim_category[dimension_label], "group" ) )
+
+    MEASURE '_Measures'[Population Note] =
+        "Population: " & SELECTEDVALUE ( dim_outcome[population] )
+
+    // Map shading: five colour bands scaled to the selected outcome's
+    // lowest and highest province (use with Fill colors > fx > Field value)
+    MEASURE '_Measures'[Map Colour] =
+        VAR _p  = [Prevalence %]
+        VAR _lo = MINX ( ALL ( dim_province ), [Prevalence %] )
+        VAR _hi = MAXX ( ALL ( dim_province ), [Prevalence %] )
+        VAR _t  = DIVIDE ( _p - _lo, _hi - _lo )
+        RETURN
+            SWITCH ( TRUE (),
+                     ISBLANK ( _p ), "#E3E8EC",
+                     _t < 0.2, "#E8F1F5",
+                     _t < 0.4, "#B9D6E3",
+                     _t < 0.6, "#7FB3CB",
+                     _t < 0.8, "#3F87A6",
+                     "#1F6F8B" )
+
+// Quick check: national prevalence of each outcome
+EVALUATE
+SUMMARIZECOLUMNS ( dim_outcome[outcome_label], "Prevalence", [Prevalence %] )

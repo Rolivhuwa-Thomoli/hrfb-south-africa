@@ -10,6 +10,15 @@ High-risk fertility behaviour means births that put mother and child at higher r
 
 **About 1 in 3 South African women aged 15–49 (32%) have at least one high-risk fertility behaviour. About 1 in 9 (11%) have two or more.**
 
+### Interactive dashboard
+
+I also built an interactive **Power BI** report on the results. It has a province map, breakdowns
+by wealth, education and age, and a forest plot of adjusted odds ratios drawn with an R visual.
+It uses Power Query, a star-schema data model and survey-weighted DAX measures.
+See [powerbi/](powerbi/README.md).
+
+[![Power BI dashboard](powerbi/screenshots/01_overview.png)](powerbi/README.md)
+
 ---
 
 ## Summary
@@ -19,7 +28,7 @@ High-risk fertility behaviour means births that put mother and child at higher r
 | **Data** | 2016 South Africa Demographic and Health Survey (SADHS): 8,497 women aged 15–49 in 729 survey clusters |
 | **Outcomes** | 4 binary HRFB indicators, plus "any" and "multiple" |
 | **Methods** | Data validation → bivariate screening (χ², Cramér's V) → LASSO variable selection for mixed models (`glmmLasso`, 5-fold CV) → two-level logistic regression (`lme4`) |
-| **Tools** | R · dplyr · ggplot2 · lme4 · glmmLasso · foreign |
+| **Tools** | R · dplyr · ggplot2 · lme4 · glmmLasso · foreign · Power BI (Power Query, DAX) |
 | **Status** | Pipeline and exploratory analysis done; modelling in progress |
 
 ---
@@ -158,7 +167,8 @@ These are issues I've identified and am working through:
 ├── run_all.R                    # runs the whole pipeline
 ├── data/README.md               # how to get the SADHS data (not included)
 ├── figures/
-└── results/                     # aggregated tables only (CSV)
+├── results/                     # aggregated tables only (CSV)
+└── powerbi/                     # Power BI report, its aggregated data, theme and build guide
 ```
 
 **Reproduce:** get the data (see [data/README.md](data/README.md)), then run `Rscript run_all.R`.

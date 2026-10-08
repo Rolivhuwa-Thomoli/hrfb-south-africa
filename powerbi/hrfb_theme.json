@@ -1,0 +1,33 @@
+{
+  "name": "HRFB South Africa",
+  "dataColors": ["#1F6F8B", "#E07A5F", "#3D9970", "#8E6CB0", "#F2B134", "#5B6770", "#99C1DE", "#C44536"],
+  "background": "#FFFFFF",
+  "foreground": "#1E2A33",
+  "tableAccent": "#1F6F8B",
+  "good": "#3D9970",
+  "neutral": "#F2B134",
+  "bad": "#C44536",
+  "maximum": "#1F6F8B",
+  "center": "#F7F3E3",
+  "minimum": "#E8F1F5",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#1E2A33" },
+    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#1E2A33" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 10, "color": "#5B6770" },
+    "callout": { "fontFace": "Segoe UI Light", "fontSize": 28, "color": "#1E2A33" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "border": [{ "show": true, "color": { "solid": { "color": "#E3E8EC" } }, "radius": 8 }],
+        "dropShadow": [{ "show": false }],
+        "padding": [{ "top": 8, "bottom": 8, "left": 10, "right": 10 }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#F5F7F9" } }, "transparency": 0 }]
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+"category_key","dimension_label","dimension_order","dimension","level","level_label","level_order"
+"overall|All women","Overall",1,"overall","All women","All women",1
+"residence|Urban","Residence",2,"residence","Urban","Urban",1
+"residence|Rural","Residence",2,"residence","Rural","Rural",2
+"wealth_index|Poor","Wealth",3,"wealth_index","Poor","Poor",1
+"wealth_index|Middle","Wealth",3,"wealth_index","Middle","Middle",2
+"wealth_index|Rich","Wealth",3,"wealth_index","Rich","Rich",3
+"age_group|less_than_24","Age group",4,"age_group","less_than_24","less than 24",1
+"age_group|25_to_29","Age group",4,"age_group","25_to_29","25 to 29",2
+"age_group|30_to_34","Age group",4,"age_group","30_to_34","30 to 34",3
+"age_group|35_to_39","Age group",4,"age_group","35_to_39","35 to 39",4
+"age_group|40_and_higher","Age group",4,"age_group","40_and_higher","40 and higher",5
+"education|No_education","Education",5,"education","No_education","No education",1
+"education|Primary","Education",5,"education","Primary","Primary",2
+"education|Secondary","Education",5,"education","Secondary","Secondary",3
+"education|Higher","Education",5,"education","Higher","Higher",4
+"marital_status|Never_in_union","Marital status",6,"marital_status","Never_in_union","Never in union",1
+"marital_status|Living_with_partner","Marital status",6,"marital_status","Living_with_partner","Living with partner",2
+"marital_status|Married","Marital status",6,"marital_status","Married","Married",3
+"marital_status|Widowed_or_Divorced_or_Separated","Marital status",6,"marital_status","Widowed_or_Divorced_or_Separated","Widowed or Divorced or Separated",4
+"ever_used_fp|No","Ever used family planning",7,"ever_used_fp","No","No",1
+"ever_used_fp|Yes","Ever used family planning",7,"ever_used_fp","Yes","Yes",2

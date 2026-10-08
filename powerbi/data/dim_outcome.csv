@@ -1,0 +1,5 @@
+"outcome_key","outcome_var","outcome_label","population","sort_order"
+"birth_before18","hrfb_less_18","First birth before 18","All women 15-49",1
+"birth_after34","hrfb_greater_34","Birth after age 34","Women aged 35+",2
+"short_interval","hrfb_sbi","Short birth interval (<24 months)","All women 15-49",3
+"high_parity","hrfb_parity","High parity (>3 children)","All women 15-49",4
