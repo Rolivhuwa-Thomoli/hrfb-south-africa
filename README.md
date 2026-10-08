@@ -6,6 +6,8 @@
 
 High-risk fertility behaviour means births that put mother and child at higher risk of illness and death. The four types are having a first birth very young, giving birth at an older age, spacing births too closely, and having many children. Using nationally representative survey data for 8,514 women, I find out who is most at risk, taking into account that women living in the same community tend to be similar.
 
+**Why it matters:** the aim is to profile the women most likely to have high-risk births, so that campaign strategists and policy-makers can target family-planning and maternal-health programmes at them. Fewer high-risk births should mean fewer adverse maternal and child outcomes.
+
 ![Prevalence](figures/02_prevalence.png)
 
 **About 1 in 3 South African women aged 15–49 (32%) have at least one high-risk fertility behaviour. About 1 in 9 (11%) have two or more.**
@@ -21,7 +23,7 @@ I also built an interactive **Power BI** report on the results. It has a provinc
 ## Key findings
 
 * **Education and wealth protect.** Women with higher education have 46–71% lower odds of an early first birth, a short birth interval and high parity than women with no education. Women in the richest households have lower odds of every one of the four outcomes (odds ratios 0.44 to 0.71).
-* **Unmet need for limiting births is the strongest modifiable factor.** It is linked to 2.1–3.3 times higher odds of every outcome.
+* **Unmet need for limiting births is the strongest marker.** It is linked to 2.1–3.3 times higher odds of every outcome. This is an association, not proof that unmet need causes high-risk births (see [section 5](#5-final-two-level-logistic-models)).
 * **Mpumalanga stands out.** It has about twice the odds of early first birth and high parity compared with the Western Cape, after adjusting for everything else.
 * **Marriage and parity go together.** Married women, women living with a partner, and women who were previously in a union have 2.2–2.6 times the odds of having more than 3 children.
 * **Communities matter, but modestly.** Before adjusting, 3–8% of the variation lies between survey clusters (median odds ratio 1.4–1.7). The predictors explain almost all of it for early first birth.
@@ -148,6 +150,8 @@ For three outcomes the LASSO kept everything: judged together, none of the predi
 
 ## 5. Final two-level logistic models
 
+**These are explanatory models, not predictive ones.** The goal is to understand *which* characteristics are associated with high-risk fertility behaviour, and how strongly, after accounting for everything else. So the quantities that matter are the odds ratios, their confidence intervals and their p-values. They say whether an association is distinguishable from chance and how large it is. Discrimination measures such as AUC appear in section 6 only as a check that the models describe the data adequately, not as the objective. A model built purely to predict would be judged differently, and could use variables with no clear interpretation.
+
 `glmmLasso` selects variables but doesn't give valid standard errors, so I refitted the selected predictors as an ordinary (unpenalised) two-level logistic regression with `lme4::glmer`:
 
 $$\text{logit}\,P(y_{ij}=1) = \beta_0 + \mathbf{x}_{ij}^\top\boldsymbol\beta + u_j, \qquad u_j \sim N(0, \sigma^2_u)$$
@@ -158,7 +162,15 @@ where woman *i* lives in cluster *j*.
 
 Red points raise the odds, green points lower them and grey points are not significant at 5%. Full table: [`results/final_odds_ratios.csv`](results/final_odds_ratios.csv).
 
-**Interpreting these with care:** this is cross-sectional data, so some associations probably run the *other way*. Women who have already had several children are more likely to *want to limit* births (unmet need for limiting) and to have *started* using contraception (ever used FP). These variables partly reflect the outcome rather than cause it, so I treat them as markers, not risk factors.
+### Correlation is not causation: the case of unmet need
+
+Unmet need for limiting births has the largest odds ratios in every model, and it is tempting to read that as "meeting women's need for contraception would prevent these births". The data cannot support that claim:
+
+* **Reverse causation.** The survey records each woman's situation at the time of the interview, *after* her births. A woman who already has four children is far more likely to say she wants no more, and so to be counted as having an unmet need *for limiting*. High parity can produce the unmet need rather than the other way round. The same applies to "ever used family planning": many women start contraception after their births, so it marks the outcome rather than preventing it.
+* **Confounding.** Unmet need goes with poor access to health services, distance to clinics, partner and community attitudes, and other things the survey measures poorly or not at all. Any of these could drive both unmet need and high-risk births.
+* **No time order.** With one cross-sectional survey there is no way to establish that the exposure came before the outcome, which is the first requirement for a causal claim.
+
+So I treat unmet need and contraceptive use as **markers that identify women at higher risk**, not as causes. That is still useful for the aim of this project: a campaign can use them to *find* the women it should reach. Showing that meeting unmet need *reduces* high-risk births would need longitudinal data or an intervention study.
 
 ---
 
