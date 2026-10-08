@@ -8,7 +8,7 @@ do not allow the data to be redistributed. To reproduce the analysis:
 
 1. Register for free at <https://dhsprogram.com/data/new-user-registration.cfm> and request access to the South Africa 2016 survey.
 2. Download the Individual Recode in SPSS format (`ZAIR71SV.zip`).
-3. Put `ZAIR71FL.SAV` in `data/raw/`.
+3. Unzip it so the file sits at `ZAIR71SV/ZAIR71FL.SAV` in the repository root.
 4. From the repository root, run `Rscript run_all.R`.
 
 Only aggregated results (prevalence tables, test statistics and odds ratios) are published in `results/` and `figures/`.

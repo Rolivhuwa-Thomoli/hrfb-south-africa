@@ -35,7 +35,7 @@ I also built an interactive **Power BI** report on the results. It has a provinc
 |---|---|
 | **Data** | 2016 South Africa Demographic and Health Survey (SADHS): 8,514 women aged 15–49 in 729 survey clusters |
 | **Outcomes** | 4 binary HRFB indicators, plus "any" and "multiple" |
-| **Methods** | Data validation → bivariate screening (χ², Cramér's V) → **group LASSO** for mixed models (`glmmLasso`, λ by BIC), compared with ordinary and sparse group LASSO → two-level logistic regression (`lme4`) → evaluation (discrimination, calibration, DHARMa residuals, bootstrap optimism, cluster-level cross-validation, survey-weighted sensitivity analysis) |
+| **Methods** | Data validation and outlier screening → bivariate screening (χ², Cramér's V) → **group LASSO** for mixed models (`glmmLasso`, λ by BIC), compared with ordinary and sparse group LASSO → two-level logistic regression (`lme4`) → evaluation (discrimination, calibration, DHARMa residuals, bootstrap optimism, cluster-level cross-validation, survey-weighted sensitivity analysis) |
 | **Tools** | R · dplyr · ggplot2 · lme4 · glmmLasso · sparsegl · pROC · DHARMa · survey · Power BI (Power Query, DAX) |
 
 ---
@@ -84,9 +84,25 @@ I wrote rules that every record should satisfy and checked the data against them
 
 ### Outliers
 
-One woman was recorded as giving birth at **age 3**: born in 1972, with a first birth in 1975, almost certainly a date-of-birth entry error. Seventeen women have a recorded first birth before age 12. My exploratory pipeline in `R/` removes these 17 records. The final analysis data set keeps all 8,514 women.
+![Outlier screening](figures/07_outliers.png)
 
-**What I caught on review:** my first version of the outlier filter also removed anyone with a first birth at **29 or older** (`age_at_first_birth < 29 & > 11`). That would have silently dropped **290 women** with perfectly normal late first births, and biased the "late birth" outcome, because those are exactly the women most likely to give birth after 34.
+I screened the four quantities the outcomes are built from in two ways: **statistically**, with Tukey fences (1.5 × IQR beyond the quartiles), and **substantively**, with rules for what is biologically possible.
+
+| Check | Women flagged | Share |
+|---|---|---|
+| Age at first birth below 12 (biologically implausible) | 17 | 0.20% |
+| Age at first birth outside Tukey fences (below 10.5 or above 30.5) | 157 | 1.84% |
+| Age at first birth above current age | 0 | 0% |
+| Age at most recent birth above 49, or outside Tukey fences | 0 | 0% |
+| Shortest birth interval of 0–8 months (twins or recording error) | 24 | 0.28% |
+| Shortest birth interval outside Tukey fences | 206 | 2.42% |
+| Children ever born outside Tukey fences | 36 | 0.42% |
+
+**Statistical outliers are not errors.** Most values outside the Tukey fences are real: first births in a woman's thirties, long gaps between children, and women with eight or more children. These women are exactly the ones the late-birth and high-parity outcomes are about, so trimming them would bias the results.
+
+**The implausible values are a different case.** The lowest recorded age at first birth is **3**, and 17 women report a first birth before 12. These are almost certainly date-of-birth entry errors. To see whether they matter, I refitted the first-birth-before-18 model without them. **No odds ratio changed by more than 6.6%** (the education estimates moved most), so I kept all 8,514 women in the analysis and report this as a sensitivity check.
+
+Full tables: [`results/outlier_audit.csv`](results/outlier_audit.csv), [`results/outlier_sensitivity.csv`](results/outlier_sensitivity.csv). Code: [`R/02b_outlier_analysis.R`](R/02b_outlier_analysis.R).
 
 ---
 
@@ -184,19 +200,28 @@ Full table: [`results/final_model_evaluation.csv`](results/final_model_evaluatio
 
 ```
 ├── R/
-│   ├── 01_prepare_data.R        # read DHS file, derive outcomes, recode predictors (exploratory pipeline)
-│   ├── 02_explore.R             # missing-data audit, consistency checks, prevalence, χ² screening
-│   ├── 03_variable_selection.R  # first glmmLasso run with 5-fold CV
-│   ├── 04_multilevel_models.R   # first glmer refit
-│   └── 05_final_figures.R       # final forest plot, drawn from results/ (no survey data needed)
-├── run_all.R                    # runs the exploratory pipeline
-├── data/README.md               # how to get the SADHS data (not included)
+│   ├── 01_data_pipeline.R            # read DHS file, derive outcomes, recode predictors
+│   ├── 02_eda.R                      # variable summaries, factor levels, prevalence
+│   ├── 02b_outlier_analysis.R        # outlier screening, audit table, sensitivity refit
+│   ├── 03_bivariate_chisq.R          # χ² tests and Cramér's V for every outcome × predictor
+│   ├── 04_group_lasso_selection.R    # group LASSO (glmmLasso), λ by BIC
+│   ├── 04c_ordinary_glmmlasso.R      # ordinary LASSO, same grid and rule, for comparison
+│   ├── 05_final_glmm.R               # final two-level logistic models (lme4)
+│   ├── 06_selection_table.R          # LaTeX table of the selection results
+│   ├── 07_forest_plot.R              # reusable forest-plot functions for glmer/glm models
+│   ├── 08_model_evaluation.R         # fit, clustering, calibration, DHARMa, bootstrap, CV, weights
+│   ├── 09_sparse_group_lasso.R       # sparse group LASSO (sparsegl), for comparison
+│   ├── 10_compare_lasso_estimates.R  # the three penalised methods side by side
+│   ├── 11_portfolio_figures.R        # forest plot in this README, drawn from results/
+│   └── preliminary/                  # my first version of the pipeline (5-fold CV LASSO)
+├── run_all.R                         # runs steps 01 to 11 in order
+├── data/README.md                    # how to get the SADHS data (not included)
 ├── figures/
-├── results/                     # aggregated tables only (CSV), from the final analysis
-└── powerbi/                     # Power BI report, its aggregated data, theme and build guide
+├── results/                          # aggregated tables only (CSV)
+└── powerbi/                          # Power BI report, its aggregated data, theme and build guide
 ```
 
-The scripts in `R/01`–`R/04` are my first, exploratory version of the pipeline. The final selection, modelling and evaluation code (group LASSO, model evaluation, method comparison) will be added after the dissertation is examined. Everything in `results/` and `figures/` comes from the final analysis.
+**Reproduce:** get the data (see [data/README.md](data/README.md)), then run `Rscript run_all.R` from the repository root. `R/11_portfolio_figures.R` needs no survey data and runs from a fresh clone.
 
 **Data note:** the SADHS microdata is **not included**, as required by the DHS Program's terms of use. Only aggregated results are published.
 

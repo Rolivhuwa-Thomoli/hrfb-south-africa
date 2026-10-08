@@ -14,8 +14,8 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(ggplot2)
 })
-source("R/03_variable_selection.R")   # OUTCOMES, PREDICTORS
-source("R/02_explore.R")              # OUTCOME_LABELS
+source("R/preliminary/03_variable_selection.R")   # OUTCOMES, PREDICTORS
+source("R/preliminary/02_explore.R")              # OUTCOME_LABELS
 
 # A factor is kept if glmmLasso kept ANY of its dummy terms
 kept_predictors <- function(outcome, predictors = PREDICTORS) {

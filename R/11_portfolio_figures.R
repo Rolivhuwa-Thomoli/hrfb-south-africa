@@ -1,9 +1,9 @@
 # =============================================================
-# 05_final_figures.R
+# 11_portfolio_figures.R
 # Forest plot of the final multilevel models, drawn from the
 # published table results/final_odds_ratios.csv. Needs no survey
 # data, so anyone can run it from a fresh clone:
-#   Rscript R/05_final_figures.R
+#   Rscript R/11_portfolio_figures.R
 # =============================================================
 
 library(ggplot2)

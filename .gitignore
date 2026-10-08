@@ -13,3 +13,7 @@ data/processed/
 .Rproj.user/
 *.Rproj
 .DS_Store
+
+# Raw DHS download folder and analysis outputs written by the scripts
+ZAIR71SV/
+output/

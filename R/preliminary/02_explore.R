@@ -12,7 +12,7 @@ suppressPackageStartupMessages({
   library(tidyr)
   library(ggplot2)
 })
-source("R/03_variable_selection.R")   # for OUTCOMES and PREDICTORS
+source("R/preliminary/03_variable_selection.R")   # for OUTCOMES and PREDICTORS
 
 OUTCOME_LABELS <- c(
   hrfb_less_18    = "First birth before 18",

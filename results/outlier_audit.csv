@@ -1,0 +1,10 @@
+"check","n_women","pct_of_women"
+"Age at first birth below 12 (biologically implausible)",17,0.2
+"Age at first birth outside Tukey fences",157,1.84
+"Age at first birth above current age",0,0
+"Age at most recent birth above 49",0,0
+"Age at most recent birth outside Tukey fences",0,0
+"Shortest birth interval of 0-8 months (twins or recording error)",24,0.28
+"Shortest birth interval outside Tukey fences",206,2.42
+"Children ever born outside Tukey fences",36,0.42
+"Children ever born above 12",0,0
